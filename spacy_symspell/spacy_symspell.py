@@ -13,9 +13,9 @@ def _load_dictionary(f="frequency_dictionary_en_500_000.txt"):
     dictionary_path = os.path.join(os.path.dirname(__file__), f)
     term_index = 0  # column of the term in the dictionary text file
     count_index = 1  # column of the term frequency in the dictionary text file
-    if not sym_spell.load_dictionary(dictionary_path, term_index, count_index):
+    if not sym_spell.load_dictionary(dictionary_path, term_index, count_index, "utf8"):
         print("Dictionary file not found")
-        #todo: throw exception instead
+        #todo: probably throw exception instead
     return sym_spell
 
 def _get_suggestions(spacy_object, dic="frequency_dictionary_en_500_000.txt"):

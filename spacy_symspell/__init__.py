@@ -1,1 +1,1 @@
-from .spacy_symspell import SpacySpellingCorrector
+from .spacy_symspell import SpellingCorrector
