@@ -1,4 +1,5 @@
-# spaCy Symspell: Spelling correction implementation in spaCy via Symspell
+# spaCy Symspell
+## Spelling correction implementation in spaCy via Symspell
 
 This package is a [spaCy 2.0 extension](https://spacy.io/usage/processing-pipelines#section-extensions) that adds sentnece/spelling corrections via Symspell to spaCy's text processing pipeline.
 
@@ -22,8 +23,8 @@ corrector = SpellingCorrector()
 nlp.add_pipe(corrector)
 doc = nlp('What doyuoknowabout antyhing')
 
-doc._.suggestions  #iterable
-doc._.segmentation  #that dook now about anything
+doc._.suggestions  #iterable[0] - What doyon about anything
+doc._.segmentation  #::segmented_string - What doyouk now about antyhing ::corrected_string - that dook now about anything
 ```
 
 spaCy_symspell operates on `Doc` and `Span` spaCy objects. When called on a `Doc` or `Span`, the object is given two attributes: `suggestions` (a list of all found spelling suggestions) and `segmentation` (a corrected sentence in the case of ommitted spaces).
