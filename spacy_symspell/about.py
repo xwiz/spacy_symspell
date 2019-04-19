@@ -1,5 +1,5 @@
 __title__ = 'spacy_symspell'
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 __summary__ = 'spaCy pipeline component for spelling correction using sysmepll.'
 __url__ = 'https://github.com/xwiz/spacy_symspell'
 __author__ = 'Xwiz'

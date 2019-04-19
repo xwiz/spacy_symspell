@@ -19,8 +19,7 @@ def _load_dictionary(f="frequency_dictionary_en_500_000.txt"):
     return sym_spell
 
 def _get_suggestions(spacy_object, dic="frequency_dictionary_en_500_000.txt"):
-    assert isinstance(spacy_object, Doc) or isinstance(
-        spacy_object, Span), "spacy_object must be a spacy Doc or Span object but it is a {}".format(type(spacy_object))
+    assert isinstance(spacy_object, Doc) or isinstance(spacy_object, Span), "spacy_object must be a spacy Doc or Span object but it is a {}".format(type(spacy_object))
     global sym_spell
     if sym_spell is None:
         _load_dictionary(dic)
@@ -46,7 +45,8 @@ class SpellingCorrector(object):
 
     Arguments:
         dictionary: An optional dictionary file for symsepll. (Default None).
-                                     If None uses the default frequency_dictionary_en_82_765.txt for lookups
+                                     If None uses the default frequency_dictionary_en_500_000.txt for lookups
+                                     You may also specify the smaller frequency_dictionary_en_82_765.txt for possibly faster dictionary loading performance
     """
 
     def __init__(self, dictionary_path=None):
@@ -54,7 +54,7 @@ class SpellingCorrector(object):
             _load_dictionary(dictionary_path)
 
     def __call__(self, doc):
-        assert isinstance(doc, Doc), "doc must be an instance of spacy Doc. But got a {}".format(type(doc))
+        assert isinstance(spacy_object, Doc) or isinstance(spacy_object, Span), "spacy_object must be a spacy Doc or Span object but it is a {}".format(type(spacy_object))
         doc.set_extension("suggestions", getter=_get_suggestions)
         doc.set_extension("segmentation", getter=_get_segmentation)
         for sent in doc.sents:
