@@ -55,8 +55,10 @@ class SpellingCorrector(object):
 
     def __call__(self, spacy_object):
         assert isinstance(spacy_object, Doc) or isinstance(spacy_object, Span), "spacy_object must be a spacy Doc or Span object but it is a {}".format(type(spacy_object))
-        spacy_object.set_extension("suggestions", getter=_get_suggestions)
-        spacy_object.set_extension("segmentation", getter=_get_segmentation)
+        if spacy_object.get_extension("suggestions") is None:
+            spacy_object.set_extension("suggestions", getter=_get_suggestions)
+        if spacy_object.get_extension("segmentation") is None:
+            spacy_object.set_extension("segmentation", getter=_get_segmentation)
         for sent in spacy_object.sents:
             if sent.get_extension("suggestions") is None:
                 sent.set_extension("suggestions", getter=_get_suggestions)
